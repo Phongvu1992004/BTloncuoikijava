@@ -1,0 +1,156 @@
+package dao;
+
+import java.sql.Connection;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import database.JDBCUtil;
+import model.hanghoa;
+
+public class HHdao implements DAOinterface<hanghoa>{
+	
+	public static HHdao getIntance() {
+		return new HHdao();
+	}
+	
+	@Override
+	public int them(hanghoa t) {
+		int k=0;
+		try {
+			
+			Connection con = JDBCUtil.getConnection();
+			
+			String sql = "INSERT INTO hanghoa"
+						+" values (?,?,?,?,?);";
+			
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, t.getId());
+			st.setString(2, t.getLoaiHH());
+			st.setDouble(3, t.getGiaBan());
+			st.setInt(4, t.getSoLuong());
+			st.setString(5, t.getNgayBan());
+			
+			k=st.executeUpdate();
+			
+			JDBCUtil.closeConnection(con);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return k;
+	}
+
+	@Override
+	public int sua(hanghoa t) {
+		int k=0;
+		try {
+			Connection con = JDBCUtil.getConnection();
+			
+			String sql = "UPDATE hanghoa SET "
+						+" loaiHH=? , giaBan=? , soLuong=? , ngayBan=? "
+						+" where id=?;";
+			
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(5, t.getId());
+			st.setString(1, t.getLoaiHH());
+			st.setDouble(2, t.getGiaBan());
+			st.setInt(3, t.getSoLuong());
+			st.setString(4, t.getNgayBan());
+			
+			k = st.executeUpdate();
+			
+			JDBCUtil.closeConnection(con);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return k;
+	}
+
+	@Override
+	public int xoa(hanghoa t) {
+		int k=0;
+		try {
+			Connection con = JDBCUtil.getConnection();
+			
+			String sql = "DELETE from hanghoa "
+						+"where id=?;";
+			
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, t.getId());
+			
+			k=st.executeUpdate();
+			
+			JDBCUtil.closeConnection(con);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	@Override
+	public ArrayList<hanghoa> selectByCondition(String condition) {
+		ArrayList<hanghoa> list = new ArrayList<hanghoa>();
+		try {
+			Connection con = JDBCUtil.getConnection();
+			
+			String sql = "SELECT * from hanghoa "
+						+"where loaiHH=? ";
+			
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, condition);
+			ResultSet rs = st.executeQuery();
+			while(rs.next()) {
+				String id = rs.getString("ID");
+				String loaiHH = rs.getString("loaiHangHoa");
+				double giaBan = rs.getDouble("giaBan");
+				int soLuong = rs.getInt("soLuong");
+				String ngayBan = rs.getString("ngayBan");
+				hanghoa hh = new hanghoa(id, loaiHH, giaBan, soLuong, ngayBan);
+				list.add(hh);
+			}
+			
+			JDBCUtil.closeConnection(con);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public ArrayList<hanghoa> showAll() {
+		ArrayList<hanghoa> list = new ArrayList<hanghoa>();
+		try {
+			Connection con = JDBCUtil.getConnection();
+			
+			ResultSet rs;
+			String sql = "SELECT * FROM hanghoa";
+			
+			PreparedStatement st = con.prepareStatement(sql);
+			rs = st.executeQuery();
+			while(rs.next()) {
+				String id=rs.getString("ID");
+				String loaiHH=rs.getString("loaiHangHoa");
+				double giaBan=rs.getDouble("giaBan");
+				int soLuong=rs.getInt("soLuong");
+				String ngayBan=rs.getString("ngayBan");
+				hanghoa hh = new hanghoa(id, loaiHH, giaBan, soLuong, ngayBan);
+				list.add(hh);
+			}
+			JDBCUtil.closeConnection(con);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public void luaChonNgayBan(String s) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}
+
+

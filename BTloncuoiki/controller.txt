@@ -1,0 +1,29 @@
+package controller;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JOptionPane;
+
+import model.hanghoa;
+import view.View;
+
+public class Controller implements ActionListener{
+	public View view;
+	
+	public Controller(View view) {
+		this.view = view;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String src = e.getActionCommand();
+		if(src.equals("Thêm")) {
+			this.view.them();
+		}else if(src.equals("Xóa")) {
+			this.view.xoa();
+		}
+		
+	}
+
+}

@@ -1,0 +1,70 @@
+package model;
+
+import java.util.Date;
+import java.util.Objects;
+
+public class hanghoa {
+	private String id;
+	private String loaiHH;
+	private double giaBan;
+	private int soLuong;
+	private String ngayBan;
+	/**
+	 * 
+	 */
+	public hanghoa() {
+		
+	}
+	/**
+	 * @param id
+	 * @param loaiHH
+	 * @param giaBan
+	 * @param soLuong
+	 * @param ngayBan
+	 */
+	public hanghoa(String id, String loaiHH, double giaBan, int soLuong, String ngayBan) {
+		super();
+		this.id = id;
+		this.loaiHH = loaiHH;
+		this.giaBan = giaBan;
+		this.soLuong = soLuong;
+		this.ngayBan = ngayBan;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getLoaiHH() {
+		return loaiHH;
+	}
+	public void setLoaiHH(String loaiHH) {
+		this.loaiHH = loaiHH;
+	}
+	public double getGiaBan() {
+		return giaBan;
+	}
+	public void setGiaBan(double giaBan) {
+		this.giaBan = giaBan;
+	}
+	public int getSoLuong() {
+		return soLuong;
+	}
+	public void setSoLuong(int soLuong) {
+		this.soLuong = soLuong;
+	}
+	public String getNgayBan() {
+		return ngayBan;
+	}
+	public void setNgayBan(String ngayBan) {
+		this.ngayBan = ngayBan;
+	}
+	@Override
+	public String toString() {
+		return "hanghoa [id=" + id + ", loaiHH=" + loaiHH + ", giaBan=" + giaBan + ", soLuong=" + soLuong + ", ngayBan="
+				+ ngayBan + "]";
+	}
+}
+
+
