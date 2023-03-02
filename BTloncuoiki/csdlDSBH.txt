@@ -1,0 +1,20 @@
+create database QUANLIDOANHSOBANHANG;
+create TABLE QUANLIDOANHSOBANHANG.hanghoa(
+        ID int not null primary key,
+        loaiHangHoa varchar(512),
+        giaBan float,
+        soLuong int ,
+        ngayBan date
+);
+insert into QUANLIDOANHSOBANHANG.hanghoa(ID,loaiHangHoa,giaBan,soLuong,ngayBan)
+values (1,'Áo khoát',300000,20,'2022-03-23');
+insert into QUANLIDOANHSOBANHANG.hanghoa(ID,loaiHangHoa,giaBan,soLuong,ngayBan)
+values (2,'Áo thun',400000,20,'2022-03-23');
+insert into QUANLIDOANHSOBANHANG.hanghoa(ID,loaiHangHoa,giaBan,soLuong,ngayBan)
+values (3,'Quần jean',500000,20,'2022-03-23');
+insert into QUANLIDOANHSOBANHANG.hanghoa(ID,loaiHangHoa,giaBan,soLuong,ngayBan)
+values (4,'Áo khoát',500000,20,'2022-03-23');
+insert into QUANLIDOANHSOBANHANG.hanghoa(ID,loaiHangHoa,giaBan,soLuong,ngayBan)
+values (5,'Áo thun',700000,20,'2022-03-23');
+alter table QUANLIDOANHSOBANHANG.hanghoa
+modify column ID varchar(255);
